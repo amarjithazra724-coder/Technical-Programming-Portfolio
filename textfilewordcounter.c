@@ -4,23 +4,17 @@ int main()
 {
     FILE *fp;
     char ch;
+    int words=0;
 
-    fp=fopen("message.txt","r+");
-
-    if(fp==NULL)
-    {
-        printf("File not found");
-        return 0;
-    }
+    fp=fopen("text.txt","r");
 
     while((ch=fgetc(fp))!=EOF)
     {
-        fseek(fp,-1,SEEK_CUR);
-        fputc(ch+3,fp);
-        fseek(fp,0,SEEK_CUR);
+        if(ch==' '||ch=='\n')
+            words++;
     }
 
     fclose(fp);
 
-    printf("File encrypted!\n");
+    printf("Total words: %d\n",words+1);
 }
